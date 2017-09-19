@@ -1,4 +1,10 @@
-## Array of function pointers
+---
+title: Array of function pointers
+date: 2017年9月19日
+categories: c
+---
+
+
 
 ### The function pointer:
 
