@@ -1,6 +1,6 @@
 ---
 title: dp问题
-date: 2017年8月31日
+date: 2017-8-31
 categories: java
 ---
 

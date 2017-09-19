@@ -1,6 +1,6 @@
 ---
 title: Array of function pointers
-date: 2017年9月19日
+date: 2017-9-19
 categories: c
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 初始wpf
-date: 2017年7月31日
+date: 2017-7-31
 categories: c#
 ---
 
