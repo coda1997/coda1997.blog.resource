@@ -65,6 +65,7 @@ categories: c
   //In Unix, signal function is a tradition example
   void (*signal (int signo, void (*func)(int))) (int);
   ```
+  #### Advantage:
 
 - This pointer is very useful to avoid code redundancy. When we use a function like `qsort()` in C, what we need is a compare function and pass the pointer of it to `qsort()`.
 
@@ -92,12 +93,13 @@ categories: c
     event_handler handler;// a function pointer
   };
   ```
+  #### Disadvantage:
+
+  - When the function type is more complicated, the more difficulty we may face without using `#define` or `typedef`.
 
 ### Array of function pointers
 
 - `(*foo[])()` is an array holding function pointers, for easy access to each function which is pointed to by some function pointers.
-
-- The array is used universally in event handling.
 
   ```c
   #include <stdio.h>
@@ -127,8 +129,61 @@ categories: c
   } 
   ```
 
+- Many C compiler will attempt to convert switch statement into a jump table, which also called branch table. Jump Table is an efficient means of handling similar events in software like event handling or delegate, which is a typical example of array of function pointers.
+
+  ```c
+  void (*pf[])(void) = {fun1,fun2,fun3,...,funn};
+
+  void test(const int jump_index){
+      if(jump_index<sizeof(pf)/sizeof(*pf))
+        pf[jump_index]();
+  }
+  ```
+
+  #### Advantage:
+
+  - Easy for maintenance. If we want to change specific behavior of a event, which has its own default function, we can just modify customer function used for the event
+
+    ```c
+    //FUN is a pointer to the function with type void (*)()
+    typedef void (*FUN)();
+
+    enum EVENT_TYPE{
+        EVENT_TYPE_1=0,
+      	EVENT_TYPE_2,
+      	EVENT_TYPE_3,
+      	EVENT_TYPE_END
+    };
+    //According different events, we just modify the eFunMap for easy maintenance
+    EVENT_FUN_MAP eFunMap[EVENT_TYPE_END] = {
+        eventFun1,
+        eventFun2,
+        eventFun3
+    };
+
+    void doAction(EVENT_TYPE eventType)
+    {
+        (eFunMap[eventType].pFun)();
+    }
+    ```
+
+  - Dynamic override. In Unix, when we handle signals, we often use arrays of function pointers. Also, in some event handling, we often use it to replace default function dynamic.
+
+    ```c
+    void doAction(EVENT_TYPE eventType)
+    {
+        (eFunMap[eventType].pFun)();
+    }
+     
+    void reloadEventFun(EVENT_TYPE eventType)
+    {
+        eFunMap[eventType].pFun = &MyEventFun1;
+      //*(eFunMap[eventType].pFun) = MyEventFun1; also works
+    }
+    ```
+
 
 ###Conclusion
 
-The array of function pointers is used so universally, like delegate in c# or java, `sort()` in Python, event handling in C or C++ and so on, that it is significant to use it expertly and comprehendingly.
+The array of function pointers is used so universally, like delegate in c# or java, `sort()` in Python, event handling in C or C++ and nearly everywhere in Unix kernel, that it is significant to use it expertly and comprehendingly.
 
