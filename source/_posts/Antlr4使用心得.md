@@ -26,11 +26,11 @@ categories: java
 
 打开idea，创建新的项目 `Hello` ，新建g4文件`Hello.g4`,如下：
 
-![Hello.g4](D:\learn\解释器构造\素材02.png)
+![Hello.g4](Antlr4使用心得\素材02.png)
 
 - g4文件是antlr4的核心部分，有关antlr4的使用绝大部分都写在g4文件中，这里我们先使用官网的demo，一窥究竟：
 
-  ![demo](D:\learn\解释器构造\素材03.png)
+  ![demo](Antlr4使用心得\素材03.png)
 
 - `grammar` 定义了文法的名字，需要注意的是，这里必须与文件同名，否则会报错；
 
@@ -38,7 +38,7 @@ categories: java
 
 - 该语法构造完成后，可以进行简单的测试，使用我们之前安装好的Antlr4的插件 `ANTLR Preview`，输入测试语句后，会自动生成语法树。如下图所示：
 
-  ![preview](D:\learn\解释器构造\素材04.png)
+  ![preview](Antlr4使用心得\素材04.png)
 
 ### 使用Antlr快速构造Calculator解释器
 
@@ -53,7 +53,7 @@ categories: java
 
 - 语法：
 
-  - 四则运算的语法如下图：![四则运算语法](素材05.png)
+  - 四则运算的语法如下图：![四则运算语法](Antlr4使用心得\素材05.png)
 
     - 需要注意的是，该语法是有左递归的，并且有二义性。但是强大的`Antlr`帮我们解决了这个问题。`Antlr`**隐式地允许**我们指定运算符优先级，规则`expr`	中，乘除的规则在前，有利于解决运算符二义性的情况。
 
@@ -71,7 +71,7 @@ categories: java
 
   - 简单的赋值操作：如图
 
-    ![赋值](素材06.png)
+    ![赋值](Antlr4使用心得\素材06.png)
 
     - 图中的assign部分便是赋值的规则，`ID` 是一个词法规则名字，`expr` 对应的是一个语法规则名字，而图中的`'='` `';'`是单个的`token` 。
 
@@ -81,7 +81,7 @@ categories: java
 
   - 上述已经简绍了完成计算器的语法结构，这里贴出相关的词法：
 
-    ![词法](素材07.png)
+    ![词法](Antlr4使用心得\素材07.png)
 
     - `MUL DIV ADD SUB`分别是乘除加减token的词法规则；
     - `ID`：表示匹配例如`aaaa, a123 B123b`等形式，`Antlr`里面的正则匹配是**贪婪**的，需要注意；
@@ -94,11 +94,11 @@ categories: java
 
   - 使用`Antlr4`的插件，检查写好的语法是否有问题。如下图：
 
-    ![语法树](素材08.png)
+    ![语法树](Antlr4使用心得\素材08.png)
 
 - 使用antlr插件，生成Lexer和Parser，如图：
 
-  ![生成](素材09.png)
+  ![生成](Antlr4使用心得\素材09.png)
 
   - 生成如下六个文件：
 
@@ -113,7 +113,7 @@ categories: java
 
     - 需要注意的是，`Antlr`默认自动生成的是Listener模式，即会生成`CalculatorListener.java`和`CalculatorBaseListener.java`，需要配置Antlr插件，勾选生成Visitor选项；
 
-      ![配置antlr](素材10.png)
+      ![配置antlr](Antlr4使用心得\素材10.png)
 
   - 下面要做的事情就是实现一个`MyVisitor`类，它通过遍历表达式语法分析树计算和返回值。
 
