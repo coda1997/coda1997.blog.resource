@@ -4,7 +4,7 @@ date: 2017-11-17
 categories: c
 ---
 
-####Heap
+#### Heap
 
 Memory management is the heart of operating system. It is crucial for programming. Each process in a multi-task OS runs in its own memory sandbox, which is the virtual address space. In 32-bit mode is always a 4GB block of memory address. Normally, a block of memory address in each process contains serval memory segments like the heap, stack, text segment and so on. Here is the standard segment layout in a x86 Linux process:
 
