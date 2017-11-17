@@ -8,6 +8,8 @@ categories: c
 
 Memory management is the heart of operating system. It is crucial for programming. Each process in a multi-task OS runs in its own memory sandbox, which is the virtual address space. In 32-bit mode is always a 4GB block of memory address. Normally, a block of memory address in each process contains serval memory segments like the heap, stack, text segment and so on. Here is the standard segment layout in a x86 Linux process:
 
+<!--more-->
+
 ![1](Debugging Malloc Lab/1.png)
 
 What I focus on is the heap this time. It is well know that almost all execution of functions and local variables are stored in the stack and heap. The heap is memory segment set for dynamic allocation. Unlike the stack, process can make the allocation and deallocation of blocks from the heap freely, just paying acceptable cost of time.
