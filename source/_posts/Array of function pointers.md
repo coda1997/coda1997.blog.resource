@@ -44,6 +44,8 @@ categories: c
 
 - It is easy to understand a function pointer is a pointer that holds the **start address** of the specific function executable code.
 
+<!--more-->
+
 - A function pointer can be passed to another function as a parameter,can be returned from a function or can be stored in an array of function pointers.
 
   ```c
@@ -183,7 +185,7 @@ categories: c
     ```
 
 
-###Conclusion
+### Conclusion
 
 The array of function pointers is used so universally, like delegate in c# or java, `sort()` in Python, event handling in C or C++ and nearly everywhere in Unix kernel, that it is significant to use it expertly and comprehendingly.
 
