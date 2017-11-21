@@ -6,7 +6,7 @@ categories: c
 
 
 
-###Build a simple malloc
+### Build a simple malloc
 
 In Linux, a program asks sbrk or brk for space, which increase the heap size and return to a pointer to the start of the new region on the heap. Also, when a program calls malloc(0), it just return NULL. Thus, we can build a simple malloc, to realize how heap works.
 
@@ -27,7 +27,7 @@ It is the easiest malloc function in Linux we build. But it can tell us how heap
 
 <!--more-->
 
-###Mate-information
+### Mate-information
 
 We can just return the allocated memory to the system, but it may be going into trouble if we need to call malloc to reserve space each time. Thus, we need to reserve the freed memory for reuse. A common method is to store meta-information about a memory region in some space that we can know which block we can reuse or which is allocated. We need a lightly more space to store some of meta-information like size, isFreed and so on. Also, need a linked list to reserve it. Here is the structure of meta-information containing a pointer to the payload.
 
