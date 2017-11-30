@@ -44,7 +44,12 @@ After:
 ```c++
 String^ string_subst(String ^data, String ^pattern, String ^replacement) {
 	try {
-			return data->Replace(pattern, replacement);
+		String^ temp;
+		do {
+			temp = data;
+			data = data->Replace(pattern, replacement);
+		} while (!data->Equals(temp));
+			return data;
 	} catch (Exception ^e) {
 		Console::WriteLine("Error in substitute ");
 		Console::WriteLine(e->ToString());
