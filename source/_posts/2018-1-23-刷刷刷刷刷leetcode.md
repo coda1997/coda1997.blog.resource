@@ -9,3 +9,5 @@ categories: kotlin
 本文无特殊内容，可能为刷leetcode是写下的一点笔记。
 
 所有题解代码放在[github](https://github.com/coda1997/leetcodeEx)上，仅供参考。
+
+更新至Ex56
